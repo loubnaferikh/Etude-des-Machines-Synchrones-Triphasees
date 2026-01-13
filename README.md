@@ -1,4 +1,4 @@
-# Étude des Machines Synchrones Triphasées
+# Study of Three-Phase Synchronous Machines
 <div style="font-size: 0.85rem; line-height: 1.5;">
 
 <div align="center">
@@ -7,7 +7,6 @@
 [![Version](https://img.shields.io/badge/Version-1.0.0-blue)](https://github.com)
 [![License](https://img.shields.io/badge/License-Academic-green)](https://github.com)
 
-**Mini Projet ME3 - Sujet 04 | École Nationale Polytechnique (ENP)**
 
 </div>
 
@@ -15,7 +14,6 @@
 
 ## Project Description
 
-### Electrical Engineering Problem
 
 The analysis of three-phase synchronous machines requires complex calculations involving multiple electrical parameters and vector diagrams. Traditional methods involve:
 
