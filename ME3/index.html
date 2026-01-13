@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Étude des Machines Synchrones Triphasées</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style (1).css">
+</head>
+<body>
+    <!-- En-tête fixe - MODIFIÉ: position fixed -->
+    <div class="site-header">
+        <div class="header-content">
+            <div class="enp-logo"></div>
+        </div>
+    </div>
+
+    <!-- Home Page -->
+    <div id="homePage" class="page active">
+        <div class="home-container">
+            <div class="home-subtitle">Étude Électrotechnique</div>
+            <h1 class="home-title">Etude Des Machines<br>Synchrones</h1>
+            <button class="start-button" onclick="showPage('selectionPage')">
+                Commencer l'étude
+            </button>
+            
+            <!-- Lien "Qui sommes nous" -->
+            <a href="#" class="about-link" onclick="showPage('aboutPage'); return false;">
+                Qui sommes nous
+            </a>
+        </div>
+    </div>
+
+    <!-- About Page -->
+    <div id="aboutPage" class="page">
+        <button class="back-button" onclick="showPage('homePage')">← Retour</button>
+        <div class="about-container">
+            <div class="about-wrapper">
+                <h2 class="about-title">À Propos du Projet</h2>
+                
+                <div class="project-description">
+                    <p><strong>Titre du projet :</strong> Étude des machines synchrones triphasées à pôles lisses ou saillants en utilisant les diagrammes à une ou deux réactances.</p>
+                    <p>Cette application web permet d'analyser et de visualiser les diagrammes caractéristiques des machines synchrones, offrant une interface intuitive pour les calculs électrotechniques complexes.</p>
+                </div>
+                
+                <div class="team-section">
+                    <h3 class="team-title">✨Membres du Groupe✨</h3>
+                    
+                    <div class="team-grid">
+                        <!-- Dev Team -->
+                        <div class="team-card">
+                            <div class="role-label">Dev Team</div>
+                            <div class="member-name" onclick="toggleEmail('email1')">
+                                Loubna FERIKH
+                            </div>
+                            <div id="email1" class="member-email">loubna.ferikh@g.enp.edu.dz</div>
+                            
+                            <div class="member-name" onclick="toggleEmail('email2')">
+                                Chahrazed MERIDED
+                            </div>
+                            <div id="email2" class="member-email">chahrazed.merided@g.enp.edu.dz</div>
+                        </div>
+                        
+                        <!-- Theory/Guide Team -->
+                        <div class="team-card">
+                            <div class="role-label">Theory/Guide Team</div>
+                            <div class="member-name" onclick="toggleEmail('email3')">
+                                Youssra BENCHERIF
+                            </div>
+                            <div id="email3" class="member-email">youssra.bencherif@g.enp.edu.dz</div>
+                            
+                            <div class="member-name" onclick="toggleEmail('email4')">
+                                Daya AIT-ABDELKRIM
+                            </div>
+                            <div id="email4" class="member-email">daya_leila.aitabdelkrim@g.enp.edu.dz</div>
+                            
+                            <div class="member-name" onclick="toggleEmail('email5')">
+                                Soulef MOUSSOUM
+                            </div>
+                            <div id="email5" class="member-email">soulef.moussoum@g.enp.edu.dz</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="back-home-button" onclick="showPage('homePage')">
+                    Retour à l'accueil
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Selection Page -->
+    <div id="selectionPage" class="page">
+        <button class="back-button" onclick="showPage('homePage')">← Retour</button>
+        <div class="selection-container">
+            <div class="selection-wrapper">
+                <h2 class="selection-title">Choisissez le Type de Machine</h2>
+                <div class="options-grid">
+                    <div class="option-card" onclick="selectMachineType('lisse')">
+                        <div class="option-icon">🟡</div>
+                        <h3 class="option-title">Pôle Lisse</h3>
+                        <p class="option-description">
+                            Machine à rotor cylindrique avec enroulement d'excitation réparti uniformément.
+                            Généralement utilisée pour les alternateurs de grande puissance.
+                        </p>
+                    </div>
+                    <div class="option-card" onclick="selectMachineType('saillant')">
+                        <div class="option-icon">⚙️</div>
+                        <h3 class="option-title">Pôle Saillant</h3>
+                        <p class="option-description">
+                            Machine à rotor avec pôles saillants distincts. Courante dans les centrales hydrauliques
+                            et les moteurs synchrones de faible vitesse.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Input Page - Pôle Lisse -->
+    <div id="inputPageLisse" class="page">
+        <button class="back-button" onclick="showPage('selectionPage')">← Retour</button>
+        <div class="input-container">
+            <div class="input-wrapper">
+                <div class="page-header">
+                    <h2 class="page-title">Configuration - Pôle Lisse</h2>
+                    <p class="page-subtitle">Entrez les paramètres de la machine synchrone</p>
+                </div>
+
+                <div class="sections-grid-2col">
+                    <!-- Section 1: Paramètres de la Machine -->
+                    <div class="input-section section-full-width">
+                        <h3 class="section-title">
+                            <span class="section-number">1</span>
+                            Paramètres de la Machine
+                        </h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Type de machine <span class="required-mark">*</span>
+                                </label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="machine-type-lisse" value="monophase" checked>
+                                        Monophasé
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="machine-type-lisse" value="triphase">
+                                        Triphasé
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group" id="couplage-group-lisse" style="display: none;">
+                                <label class="form-label">
+                                    Couplage triphasé <span class="required-mark">*</span>
+                                </label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="couplage-lisse" value="etoile" checked>
+                                        Étoile (Y)
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="couplage-lisse" value="triangle">
+                                        Triangle (Δ)
+                                    </label>
+                                </div>
+                                
+                                <!-- NOUVEAU: Choix entre Rs direct ou Req -->
+                                <div class="form-group" id="rs-choice-group-lisse" style="margin-top: 15px; display: none;">
+                                    <label class="form-label">
+                                        Mode d'entrée pour la résistance <span class="required-mark">*</span>
+                                    </label>
+                                    <div class="radio-group">
+                                        <label class="radio-label">
+                                            <input type="radio" name="rs-choice-lisse" value="direct" checked>
+                                            Entrer la valeur de Rs
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="rs-choice-lisse" value="req">
+                                            Entrer la valeur de Req
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <!-- Champ pour Rs direct -->
+                                <div class="form-group" id="rs-direct-group-lisse-choice" style="display: block;">
+                                    <label class="form-label">
+                                        Résistance d'induit Rs (Ω) <span class="required-mark">*</span>
+                                    </label>
+                                    <input type="number" class="form-input" id="rs-lisse-direct-choice" step="0.01" min="0" placeholder="Ex: 0.25" value="0.25">
+                                </div>
+                                
+                                <!-- Champ pour Req -->
+                                <div class="form-group" id="req-group-lisse-choice" style="display: none;">
+                                    <label class="form-label">
+                                        Résistance totale aux bornes du stator Req (Ω) <span class="required-mark">*</span>
+                                    </label>
+                                    <input type="number" class="form-input" id="req-lisse-choice" step="0.01" min="0" placeholder="Ex: 1.5">
+                                    <button class="btn-calcul-rs" onclick="calculerRsFromReqLisse()" style="margin-top: 10px;">
+                                        Calculer la valeur de Rs
+                                    </button>
+                                    <div id="rs-resultat-lisse-choice" class="rs-resultat" style="margin-top: 10px; display: none;">
+                                        <div class="rs-valeur">Rs calculé: <span id="valeur-rs-lisse-choice"></span> Ω</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Champ Rs pour monophasé (affiché par défaut) -->
+                            <div class="form-group" id="rs-direct-group-lisse-monophase">
+                                <label class="form-label">
+                                    Résistance d'induit Rs (Ω) <span class="required-mark">*</span>
+                                </label>
+                                <input type="number" class="form-input" id="rs-lisse-monophase" step="0.01" min="0" placeholder="Ex: 0.5" value="0.25">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Fréquence (Hz) <span class="required-mark">*</span>
+                                </label>
+                                <input type="number" class="form-input" id="freq-lisse" step="0.1" min="0" placeholder="Ex: 50" value="50">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Nombre de paires de pôles <span class="required-mark">*</span>
+                                </label>
+                                <input type="number" class="form-input" id="poles-lisse" step="1" min="1" placeholder="Ex: 2" value="2">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Paramètres de Fonctionnement -->
+                    <div class="input-section">
+                        <h3 class="section-title">
+                            <span class="section-number">2</span>
+                            Paramètres de Fonctionnement
+                        </h3>
+                        <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Tension simple d'alimentation V (V) <span class="required-mark">*</span>
+                                </label>
+                                <input type="number" class="form-input" id="v-lisse" step="0.01" min="0" placeholder="Ex: 220" value="220">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Courant d'induit I (A) <span class="required-mark">*</span>
+                                </label>
+                                <input type="number" class="form-input" id="i-lisse" step="0.01" min="0" placeholder="Ex: 40" value="10">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Facteur de puissance (cos φ) <span class="required-mark">*</span>
+                                </label>
+                                <input type="number" class="form-input" id="cosphi-lisse" step="0.01" min="0" max="1" placeholder="Ex: 0.85" value="0.8">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Type de charge <span class="required-mark">*</span>
+                                </label>
+                                <select class="form-select" id="nature-lisse">
+                                    <option value="inductive" selected>Inductive</option>
+                                    <option value="capacitive">Capacitive</option>
+                                    <option value="resistive">Resistive</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Mode de fonctionnement <span class="required-mark">*</span>
+                                </label>
+                                <select class="form-select" id="mode-lisse">
+                                    <option value="generatrice" selected>Génératrice</option>
+                                    <option value="moteur">Moteur</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Caractéristique à Vide -->
+                    <div class="input-section">
+                        <h3 class="section-title">
+                            <span class="section-number">3</span>
+                            Caractéristique à Vide
+                        </h3>
+                        <p class="form-label">
+                            Courbe E = f(J) - Minimum 4 points pour  <span class="required-mark">*</span>
+                        </p>
+                        <table class="data-table" id="table-vide-lisse">
+                            <thead>
+                                <tr>
+                                    <th>J (A)</th>
+                                    <th>E (V)</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="number" step="0.01" value="0.2"></td>
+                                    <td><input type="number" step="0.01" value="84.29"></td>
+                                    <td><button class="btn-remove" onclick="removeRow(this)">Supprimer</button></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="number" step="0.01" value="0.4"></td>
+                                    <td><input type="number" step="0.01" value="159.9"></td>
+                                    <td><button class="btn-remove" onclick="removeRow(this)">Supprimer</button></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="number" step="0.01" value="0.6"></td>
+                                    <td><input type="number" step="0.01" value="215.92"></td>
+                                    <td><button class="btn-remove" onclick="removeRow(this)">Supprimer</button></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="number" step="0.01" value="0.8"></td>
+                                    <td><input type="number" step="0.01" value="244.2"></td>
+                                    <td><button class="btn-remove" onclick="removeRow(this)">Supprimer</button></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="number" step="0.01" value="1.0"></td>
+                                    <td><input type="number" step="0.01" value="263.84"></td>
+                                    <td><button class="btn-remove" onclick="removeRow(this)">Supprimer</button></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="number" step="0.01" value="1.2"></td>
+                                    <td><input type="number" step="0.01" value="278.28"></td>
+                                    <td><button class="btn-remove" onclick="removeRow(this)">Supprimer</button></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="number" step="0.01" value="1.4"></td>
+                                    <td><input type="number" step="0.01" value="288.67"></td>
+                                    <td><button class="btn-remove" onclick="removeRow(this)">Supprimer</button></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="number" step="0.01" value="1.6"></td>
+                                    <td><input type="number" step="0.01" value="296.75"></td>
+                                    <td><button class="btn-remove" onclick="removeRow(this)">Supprimer</button></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="number" step="0.01" value="1.8"></td>
+                                    <td><input type="number" step="0.01" value="301.95"></td>
+                                    <td><button class="btn-remove" onclick="removeRow(this)">Supprimer</button></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="number" step="0.01" value="2.0"></td>
+                                    <td><input type="number" step="0.01" value="304.84"></td>
+                                    <td><button class="btn-remove" onclick="removeRow(this)">Supprimer</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="table-actions">
+                            <button class="btn-add" onclick="addRowVide('lisse')">+ Ajouter une ligne</button>
+                        </div>
+                    </div>
+
+                    <!-- Section 4: Caractéristique en Court-Circuit -->
+                    <div class="input-section">
+                        <h3 class="section-title">
+                            <span class="section-number">4</span>
+                            Caractéristique en Court-Circuit
+                        </h3>
+                        <p class="form-label">
+                            Courbe Icc = f(J) <span class="required-mark">*</span>
+                        </p>
+                        <table class="data-table" id="table-cc-lisse">
+                            <thead>
+                                <tr>
+                                    <th>J (A)</th>
+                                    <th>Icc (A)</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="number" step="0.01" value="1.8"></td>
+                                    <td><input type="number" step="0.01" value="60"></td>
+                                    <td><button class="btn-remove" onclick="removeRow(this)">Supprimer</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="table-actions">
+                            <button class="btn-add" onclick="addRowCC('lisse')">+ Ajouter une ligne</button>
+                        </div>
+                    </div>
+
+                    <!-- Section 5: Essai Dewatté -->
+                    <div class="input-section">
+                        <h3 class="section-title">
+                            <span class="section-number">5</span>
+                            Essai Dewatté
+                        </h3>
+                        <p class="form-label">
+                            Un seul point pour l'essai Dewatté <span class="required-mark">*</span>
+                        </p>
+                        <table class="data-table" id="table-dewatte-lisse">
+                            <thead>
+                                <tr>
+                                    <th>Vd (V)</th>
+                                    <th>Id (A)</th>
+                                    <th>Jd (A)</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="number" step="0.01" value="220"></td>
+                                    <td><input type="number" step="0.01" value="36"></td>
+                                    <td><input type="number" step="0.01" value="2.0"></td>
+                                    <td><button class="btn-remove" onclick="removeRow(this)">Supprimer</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="table-actions">
+                            <button class="btn-add" onclick="addRowDewatte('lisse')">+ Ajouter une ligne</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="error-lisse" class="error-message"></div>
+
+                <div class="action-buttons">
+                    <button class="diagram-button" onclick="generateDiagram('lisse', 'behn')">
+                        📈 Diagramme de Behn-Eschenburg
+                    </button>
+                    <button class="diagram-button" onclick="generateDiagram('lisse', 'potier')">
+                        📊 Diagramme de Potier
+                    </button>
+                </div>
+
+                <!-- Diagram Display -->
+                <div id="diagram-display-lisse" class="diagram-display">
+                    <h2 class="diagram-title" id="diagram-title-lisse"></h2>
+                    <div class="diagram-layout">
+                        <div class="canvas-container">
+                            <canvas id="diagramCanvas-lisse"></canvas>
+                        </div>
+                        <div class="control-panel">
+                            <div class="control-section">
+                                <div class="control-title">Animation</div>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="animation-lisse" checked>
+                                        <span class="vector-label">Activer l'animation</span>
+                                    </label>
+                                </div>
+                                <button class="btn-replay" onclick="replayAnimation('lisse')">🔄 Revoir l'animation</button>
+                            </div>
+                            <div class="control-section">
+                                <div class="control-title">Vecteurs</div>
+                                <div class="checkbox-group" id="vectors-lisse">
+                                    <!-- Vectors will be populated dynamically -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- NOUVELLE BARRE D'ANIMATION PÔLE LISSE -->
+                    <div id="animation-bar-lisse" class="animation-controls-bar" style="display: none;">
+                        
+                        <!-- 1. BARRE DE PROGRESSION -->
+                        <div class="animation-progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progress-fill-lisse"></div>
+                            </div>
+                            <div class="progress-labels">
+                                <span id="current-step-lisse">Étape 0</span>
+                                <span id="total-steps-lisse">sur 0 étapes</span>
+                            </div>
+                        </div>
+                        
+                        <!-- 2. PANEL D'INFORMATION -->
+                        <div class="animation-info-panel">
+                            
+                            <!-- 2a. INDICATEUR VISUEL (à GAUCHE) -->
+                            <div class="step-indicator">
+                                <div class="step-number" id="step-number-lisse">0</div>
+                                <div class="step-total" id="step-total-lisse">sur 0</div>
+                            </div>
+                            
+                            <!-- 2b. DESCRIPTION (à DROITE) -->
+                            <div class="step-description">
+                                <div class="step-title" id="step-title-lisse">Prêt à démarrer</div>
+                                <div class="step-details" id="step-details-lisse">
+                                    Activez l'animation pour voir la construction étape par étape du diagramme.
+                                </div>
+                                <div class="step-equation" id="step-equation-lisse" style="display: none;">
+                                    <!-- Les équations apparaîtront ici dynamiquement -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 3. BOUTONS DE CONTRÔLE -->
+                        <div class="animation-controls-buttons">
+                            <button class="control-btn play" id="play-btn-lisse" onclick="playAnimationLisse()">
+                                <i class="fas fa-play"></i> Démarrer
+                            </button>
+                            <button class="control-btn pause" id="pause-btn-lisse" onclick="pauseAnimationLisse()" disabled>
+                                <i class="fas fa-pause"></i> Pause
+                            </button>
+                            <button class="control-btn restart" id="restart-btn-lisse" onclick="restartAnimationLisse()">
+                                <i class="fas fa-redo"></i> Recommencer
+                            </button>
+                        </div>
+                        
+                        <!-- 4. MESSAGE DE FIN -->
+                        <div id="animation-complete-lisse" class="animation-complete" style="display: none;">
+                            <div class="animation-complete-icon">✓</div>
+                            <h4>Animation Terminée</h4>
+                            <p>Le diagramme est complètement construit. Cliquez sur "Recommencer" pour revoir l'animation.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="outputs-section">
+                        <h3 class="outputs-title">Résultats</h3>
+                        <div class="output-grid" id="outputs-lisse">
+                            <!-- Outputs will be populated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- NOUVEAU: Bouton pour calculer le courant d'excitation J -->
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button class="diagram-button" onclick="calculerCourantExcitationJLisse()">
+                            <i class="fas fa-calculator"></i> Calculer le courant d'excitation J
+                        </button>
+                    </div>
+                    
+                    <!-- NOUVEAU: Cadre pour le courant d'excitation J -->
+                    <div id="cadre-courant-J-lisse" class="cadre-courant-J">
+                        <h4>Calcul du Courant d'Excitation J</h4>
+                        <div class="calcul-etapes" id="calcul-etapes-lisse">
+                            <!-- Les étapes de calcul seront ajoutées dynamiquement -->
+                        </div>
+                        <div class="resultat-final">
+                            <h5>Courant d'excitation J calculé</h5>
+                            <div class="valeur-finale" id="valeur-courant-J-lisse">- A</div>
+                        </div>
+                    </div>
+
+                    <button class="close-diagram" onclick="closeDiagram('lisse')">Fermer le diagramme</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Input Page - Pôle Saillant (INTÉGRATION BLONDEL & KAPP) -->
+    <div id="inputPageSaillant" class="page">
+        <button class="back-button" onclick="showPage('selectionPage')">← Retour</button>
+        <div class="input-container">
+            <div class="input-wrapper">
+                <div class="page-header">
+                    <h2 class="page-title">Configuration - Pôle Saillant</h2>
+                    <p class="page-subtitle">Entrez les paramètres de la machine synchrone</p>
+                </div>
+
+                <div class="sections-grid-2col">
+                    <!-- Section 1: Paramètres de la Machine (MODIFIED: Made vertical) -->
+                    <!-- Remplacer la section actuelle (Section 1: Paramètres de la Machine) par : -->
+                    <div class="input-section">
+                        <h3 class="section-title">
+                            <span class="section-number">1</span>
+                            Paramètres de la Machine
+                        </h3>
+                        <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Type de machine <span class="required-mark">*</span>
+                                </label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" id="type-monophase-saillant" name="machine-type-saillant" value="monophase" checked>
+                                        Monophasé
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" id="type-triphase-saillant" name="machine-type-saillant" value="triphase">
+                                        Triphasé
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Nouveau: Groupement pour le couplage triphasé -->
+                            <div class="form-group" id="couplage-group-saillant" style="display: none;">
+                                <label class="form-label">
+                                    Couplage triphasé <span class="required-mark">*</span>
+                                </label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" id="couplage-etoile-saillant" name="type-couplage-saillant" value="etoile" checked>
+                                        Étoile (Y)
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" id="couplage-triangle-saillant" name="type-couplage-saillant" value="triangle">
+                                        Triangle (Δ)
+                                    </label>
+                                </div>
+                                
+                                <!-- NOUVEAU: Choix entre Rs direct ou Req -->
+                                <div class="form-group" id="rs-choice-group-saillant" style="margin-top: 15px; display: block;">
+                                    <label class="form-label">
+                                        Mode d'entrée pour la résistance <span class="required-mark">*</span>
+                                    </label>
+                                    <div class="radio-group">
+                                        <label class="radio-label">
+                                            <input type="radio" name="rs-choice-saillant" value="direct" checked>
+                                            Entrer la valeur de Rs
+                                        </label>
+                                        <label class="radio-label">
+                                            <input type="radio" name="rs-choice-saillant" value="req">
+                                            Entrer la valeur de Req
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <!-- Champ pour Rs direct -->
+                                <div class="form-group" id="rs-direct-group-saillant-choice" style="display: block;">
+                                    <label class="form-label">
+                                        Résistance d'induit Rs (Ω) <span class="required-mark">*</span>
+                                    </label>
+                                    <input type="number" class="form-input" id="rs-saillant-direct-choice" step="0.01" min="0" placeholder="Ex: 0.25" value="0.15">
+                                </div>
+                                
+                                <!-- Champ pour Req -->
+                                <div class="form-group" id="req-group-saillant-choice" style="display: none;">
+                                    <label class="form-label">
+                                        Résistance totale aux bornes du stator Req (Ω) <span class="required-mark">*</span>
+                                    </label>
+                                    <input type="number" class="form-input" id="req-saillant-choice" step="0.01" min="0" placeholder="Ex: 1.5">
+                                    <button class="btn-calcul-rs" onclick="calculerRsFromReqSaillant()" style="margin-top: 10px;">
+                                        Calculer la valeur de Rs
+                                    </button>
+                                    <div id="rs-resultat-saillant-choice" class="rs-resultat" style="margin-top: 10px; display: none;">
+                                        <div class="rs-valeur">Rs calculé: <span id="valeur-rs-saillant-choice"></span> Ω</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Champ Rs pour monophasé (affiché par défaut) -->
+                            <div class="form-group" id="rs-direct-group-saillant-monophase">
+                                <label class="form-label">
+                                    Résistance d'induit Rs (Ω) <span class="required-mark">*</span>
+                                </label>
+                                <input type="number" class="form-input" id="rs-saillant-monophase" step="0.01" min="0" placeholder="Ex: 0.15" value="0.15">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Nombre de paires de pôles <span class="required-mark">*</span>
+                                </label>
+                                <input type="number" class="form-input" id="paires-poles-saillant" value="2" step="1" min="1">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Fréquence (Hz) <span class="required-mark">*</span>
+                                </label>
+                                <input type="number" class="form-input" id="frequence-saillant" value="50" step="0.1" min="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Paramètres de Fonctionnement -->
+                    <div class="input-section">
+                        <h3 class="section-title">
+                            <span class="section-number">2</span>
+                            Paramètres de Fonctionnement
+                        </h3>
+                        <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Tension simple V (V) <span class="required-mark">*</span>
+                                </label>
+                                <input type="number" class="form-input" id="v-saillant" value="220" step="1" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Courant d'induit I (A) <span class="required-mark">*</span>
+                                </label>
+                                <input type="number" class="form-input" id="i-saillant" value="10" step="0.1" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Facteur de puissance cosφ <span class="required-mark">*</span>
+                                </label>
+                                <input type="number" class="form-input" id="cosphi-saillant" value="0.8" step="0.01" min="0" max="1">
+                            </div>
+                            <div class="form-group">
+                               
+                                <div class="form-group">
+                                <label class="form-label">
+                                    Type de charge <span class="required-mark">*</span>
+                                </label>
+                                <select class="form-select" id="nature-saillant">
+                                    <option value="inductive" selected>Inductive</option>
+                                    <option value="capacitive">Capacitive</option>
+                                    <option value="resistive">Résistive</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    Mode de fonctionnement <span class="required-mark">*</span>
+                                </label>
+                                <select class="form-select" id="mode-saillant">
+                                    <option value="alternateur" selected>Alternateur</option>
+                                    <option value="moteur">Moteur</option>
+                                </select>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Caractéristique à Vide -->
+                    <div class="input-section">
+                        <h3 class="section-title">
+                            <span class="section-number">3</span>
+                            Caractéristique à Vide
+                        </h3>
+                        <p class="form-label">
+                            E (V) = Tension à vide, J (A) = Courant d'excitation
+                        </p>
+                        
+                        <div class="tableau-container">
+                            <table class="tableau-potier" id="tableau-vide-saillant">
+                                <thead>
+                                    <tr>
+                                        <th>E (V)</th>
+                                        <th>J (A)</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-vide-saillant">
+                                    <tr>
+                                        <td><input type="number" class="input-vide-e" placeholder="0" value="84.29"></td>
+                                        <td><input type="number" class="input-vide-j" placeholder="0" value="0.2"></td>
+                                        <td>
+                                            <button class="btn-tableau" onclick="supprimerLigneSaillant('vide', this)">Supprimer</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="number" class="input-vide-e" placeholder="50" value="159.9"></td>
+                                        <td><input type="number" class="input-vide-j" placeholder="0.5" value="0.4"></td>
+                                        <td>
+                                            <button class="btn-tableau" onclick="supprimerLigneSaillant('vide', this)">Supprimer</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="number" class="input-vide-e" placeholder="100" value="215.92"></td>
+                                        <td><input type="number" class="input-vide-j" placeholder="1.0" value="0.6"></td>
+                                        <td>
+                                            <button class="btn-tableau" onclick="supprimerLigneSaillant('vide', this)">Supprimer</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="number" class="input-vide-e" placeholder="150" value="244.2"></td>
+                                        <td><input type="number" class="input-vide-j" placeholder="1.5" value="0.8"></td>
+                                        <td>
+                                            <button class="btn-tableau" onclick="supprimerLigneSaillant('vide', this)">Supprimer</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="number" class="input-vide-e" placeholder="0" value="263.84"></td>
+                                        <td><input type="number" class="input-vide-j" placeholder="0" value="1"></td>
+                                        <td>
+                                            <button class="btn-tableau" onclick="supprimerLigneSaillant('vide', this)">Supprimer</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="number" class="input-vide-e" placeholder="0" value="278.28"></td>
+                                        <td><input type="number" class="input-vide-j" placeholder="0" value="1.2"></td>
+                                        <td>
+                                            <button class="btn-tableau" onclick="supprimerLigneSaillant('vide', this)">Supprimer</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="number" class="input-vide-e" placeholder="0" value="288.67"></td>
+                                        <td><input type="number" class="input-vide-j" placeholder="0" value="1.4"></td>
+                                        <td>
+                                            <button class="btn-tableau" onclick="supprimerLigneSaillant('vide', this)">Supprimer</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="number" class="input-vide-e" placeholder="0" value="296.75"></td>
+                                        <td><input type="number" class="input-vide-j" placeholder="0" value="1.6"></td>
+                                        <td>
+                                            <button class="btn-tableau" onclick="supprimerLigneSaillant('vide', this)">Supprimer</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="number" class="input-vide-e" placeholder="0" value="301.95"></td>
+                                        <td><input type="number" class="input-vide-j" placeholder="0" value="1.8"></td>
+                                        <td>
+                                            <button class="btn-tableau" onclick="supprimerLigneSaillant('vide', this)">Supprimer</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="number" class="input-vide-e" placeholder="0" value="304.84"></td>
+                                        <td><input type="number" class="input-vide-j" placeholder="0" value="2"></td>
+                                        <td>
+                                            <button class="btn-tableau" onclick="supprimerLigneSaillant('vide', this)">Supprimer</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 10px;">
+                            <button class="btn-tableau" onclick="ajouterLigneSaillant('vide')">
+                                <i class="fas fa-plus"></i> Ajouter une ligne
+                            </button>
+                            <button class="btn-tableau" onclick="viderTableauSaillant('vide')">
+                                <i class="fas fa-trash"></i> Tout supprimer
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Section 4: Caractéristique en Court-Circuit -->
+                    <div class="input-section">
+                        <h3 class="section-title">
+                            <span class="section-number">4</span>
+                            Caractéristique en Court-Circuit
+                        </h3>
+                        <p class="form-label">
+                            Icc (A) = Courant de court-circuit, J (A) = Courant d'excitation
+                        </p>
+                        
+                        <div class="tableau-container">
+                            <table class="tableau-potier" id="tableau-cc-saillant">
+                                <thead>
+                                    <tr>
+                                        <th>Icc (A)</th>
+                                        <th>J (A)</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-cc-saillant">
+                                    <tr>
+                                        <td><input type="number" class="input-cc-icc" placeholder="5" value="5"></td>
+                                        <td><input type="number" class="input-cc-j" placeholder="0.5" value="0.5"></td>
+                                        <td>
+                                            <button class="btn-tableau" onclick="supprimerLigneSaillant('cc', this)">Supprimer</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="number" class="input-cc-icc" placeholder="10" value="10"></td>
+                                        <td><input type="number" class="input-cc-j" placeholder="1.0" value="1.0"></td>
+                                        <td>
+                                            <button class="btn-tableau" onclick="supprimerLigneSaillant('cc', this)">Supprimer</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="number" class="input-cc-icc" placeholder="15" value="15"></td>
+                                        <td><input type="number" class="input-cc-j" placeholder="1.5" value="1.5"></td>
+                                        <td>
+                                            <button class="btn-tableau" onclick="supprimerLigneSaillant('cc', this)">Supprimer</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 10px;">
+                            <button class="btn-tableau" onclick="ajouterLigneSaillant('cc')">
+                                <i class="fas fa-plus"></i> Ajouter une ligne
+                            </button>
+                            <button class="btn-tableau" onclick="viderTableauSaillant('cc')">
+                                <i class="fas fa-trash"></i> Tout supprimer
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Section 5: Essai dewatté -->
+                    <div class="input-section">
+                        <h3 class="section-title">
+                            <span class="section-number">5</span>
+                            Essai Dewatté (1 point)
+                        </h3>
+                        <p class="form-label">
+                            Point de fonctionnement nominal
+                        </p>
+                        
+                        <div class="form-group">
+                            <label for="vd-saillant">Tension dewatté Vd (V) :</label>
+                            <input type="number" class="form-input" id="vd-saillant" value="220" step="1" min="0">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="id-saillant">Courant dewatté Id (A) :</label>
+                            <input type="number" class="form-input" id="id-saillant" value="10" step="0.1" min="0">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="jd-saillant">Courant d'excitation Jd (A) :</label>
+                            <input type="number" class="form-input" id="jd-saillant" value="2.0" step="0.1" min="0">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="cosphi-dewatte-saillant">Facteur de puissance cosφ (essai dewatté) :</label>
+                            <input type="number" class="form-input" id="cosphi-dewatte-saillant" value="0.8" step="0.01" min="0" max="1">
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 15px;">
+                            <button class="btn-tableau" onclick="calculerAlphaLambdaSaillant()" style="margin: 0; padding: 10px 15px; font-size: 0.9em;">
+                                <i class="fas fa-calculator"></i> Calculer α et λ (Potier)
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Section 6: Essai de glissement -->
+                    <div class="input-section">
+                        <h3 class="section-title">
+                            <span class="section-number">6</span>
+                            Essai de Glissement
+                        </h3>
+                        <p class="form-label">
+                            Mesure unique des courants Imax et Imin
+                        </p>
+                        
+                        <div class="form-group">
+                            <label for="v-glissement-saillant">Tension d'alimentation V (V) :</label>
+                            <input type="number" class="form-input" id="v-glissement-saillant" value="220" step="1" min="0">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="imax-saillant">Courant maximum Imax (A) :</label>
+                            <input type="number" class="form-input" id="imax-saillant" value="12" step="0.1" min="0">
+                            <div style="color: var(--secondary); font-size: 0.85em; margin-top: 5px;">
+                                Courant lorsque l'axe direct est aligné
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="imin-saillant">Courant minimum Imin (A) :</label>
+                            <input type="number" class="form-input" id="imin-saillant" value="8" step="0.1" min="0">
+                            <div style="color: var(--secondary); font-size: 0.85em; margin-top: 5px;">
+                                Courant lorsque l'axe en quadrature est aligné
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 15px;">
+                            <button class="btn-tableau" onclick="calculerXtXlSaillant()" style="margin: 0; padding: 10px 15px; font-size: 0.9em;">
+                                <i class="fas fa-calculator"></i> Calculer Xt et Xl
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zone des paramètres calculés -->
+                 <div id="zone-parametres-calcules-saillant" class="parametres-calcules" style="display: none; margin-top: 2rem;">
+                <h4>Paramètres Calculés</h4>
+                <div id="parametres-calcules-saillant" class="param-grid">
+                    <!-- Les paramètres calculés seront affichés ici -->
+                </div>
+                </div>
+
+            <!-- Boutons pour lancer les calculs -->
+            <div class="action-buttons">
+                <button class="diagram-button" onclick="calculerTousParametresSaillant()">
+                    <i class="fas fa-calculator"></i> Calculer Tous les Paramètres
+                </button>
+            </div>
+
+            <!-- Choix du diagramme à tracer -->
+            <div class="action-buttons">
+                <button class="diagram-button" onclick="tracerDiagrammeBlondelSaillant()">
+                    <i class="fas fa-chart-line"></i> Tracer Diagramme de Blondel
+                </button>
+                <button class="diagram-button" onclick="tracerDiagrammeKAPPSaillant()">
+                    <i class="fas fa-chart-line"></i> Tracer Diagramme de KAPP
+                </button>
+            </div>
+
+            
+            <!-- Zone de visualisation du diagramme -->
+            <div id="zone-visualisation-saillant" class="diagram-display">
+                <h2 class="diagram-title" id="titre-diagramme-saillant">Diagramme</h2>
+                
+                <div class="diagram-layout">
+                    <!-- Canvas pour le diagramme -->
+                    <div class="canvas-container">
+                        <canvas id="canvas-diagramme-saillant" width="1000" height="600"></canvas>
+                    </div>
+                    
+                    <!-- Panneau de contrôle -->
+                    <div class="control-panel">
+                        <div class="control-section">
+                            <div class="control-title">Animation</div>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="animation-saillant" checked>
+                                    <span class="vector-label">Activer l'animation</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="control-section">
+                            <div class="control-title">Vecteurs</div>
+                            <div class="checkbox-group" id="vectors-saillant">
+                                <!-- Vectors will be populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- NOUVELLE BARRE D'ANIMATION -->
+                <div id="animation-bar-saillant" class="animation-controls-bar" style="display: none;">
+                    <div class="animation-progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill-saillant"></div>
+                        </div>
+                        <div class="progress-labels">
+                            <span id="current-step-saillant">Étape 0</span>
+                            <span id="total-steps-saillant">sur 0 étapes</span>
+                        </div>
+                    </div>
+                    
+                    <div class="animation-info-panel">
+                        <div class="step-indicator">
+                            <div class="step-number" id="step-number-saillant">0</div>
+                            <div class="step-total" id="step-total-saillant">sur 0</div>
+                        </div>
+                        <div class="step-description">
+                            <div class="step-title" id="step-title-saillant">Prêt à démarrer</div>
+                            <div class="step-details" id="step-details-saillant">
+                                Activez l'animation pour voir la construction étape par étape du diagramme.
+                            </div>
+                            <div class="step-equation" id="step-equation-saillant" style="display: none;">
+                                <!-- Les équations apparaîtront ici -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="animation-controls-buttons">
+                        <button class="control-btn play" id="play-btn-saillant" onclick="playAnimationSaillant()">
+                            <i class="fas fa-play"></i> Démarrer
+                        </button>
+                        <button class="control-btn pause" id="pause-btn-saillant" onclick="pauseAnimationSaillant()" disabled>
+                            <i class="fas fa-pause"></i> Pause
+                        </button>
+                        <button class="control-btn restart" id="restart-btn-saillant" onclick="restartAnimationSaillant()">
+                            <i class="fas fa-redo"></i> Recommencer
+                        </button>
+                    </div>
+                    
+                    <div id="animation-complete-saillant" class="animation-complete" style="display: none;">
+                        <div class="animation-complete-icon">✓</div>
+                        <h4>Animation Terminée</h4>
+                        <p>Le diagramme est complètement construit. Cliquez sur "Recommencer" pour revoir l'animation.</p>
+                    </div>
+                </div>
+                
+                <!-- Cadre des résultats -->
+                <div id="cadre-resultats-saillant" class="outputs-section">
+                    <h3 class="outputs-title">Résultats du Diagramme</h3>
+                    <div id="resultats-diagramme-saillant" class="output-grid">
+                        <!-- Les résultats seront affichés ici -->
+                    </div>
+                </div>
+                
+                <!-- Bouton pour calculer le courant d'excitation J -->
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="diagram-button" onclick="calculerCourantExcitationJSaillant()">
+                        <i class="fas fa-calculator"></i> Calculer le courant d'excitation J
+                    </button>
+                </div>
+                
+                <!-- Cadre pour le courant d'excitation J -->
+                <div id="cadre-courant-J-saillant" class="cadre-courant-J">
+                    <h4>Calcul du Courant d'Excitation J</h4>
+                    <div class="calcul-etapes" id="calcul-etapes-saillant">
+                        <!-- Les étapes de calcul seront ajoutées dynamiquement -->
+                    </div>
+                    <div class="resultat-final">
+                        <h5>Courant d'excitation J calculé</h5>
+                        <div class="valeur-finale" id="valeur-courant-J-saillant">- A</div>
+                    </div>
+                </div>
+
+                <button class="close-diagram" onclick="closeDiagramSaillant()">Fermer le diagramme</button>
+            </div>
+        </div>
+    </div>
+                    
+
+    <script src="jsPoleLisse.js"></script>
+    <script src="jsPoleSaillant.js"></script>
+    
+    <script>
+        // Fonctions de navigation de base
+        function showPage(pageId) {
+            // Cacher toutes les pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Afficher la page demandée
+            document.getElementById(pageId).classList.add('active');
+            
+            // Remonter en haut de la page
+            window.scrollTo(0, 0);
+        }
+        
+        function toggleEmail(emailId) {
+            const emailElement = document.getElementById(emailId);
+            emailElement.classList.toggle('show');
+        }
+        
+        function selectMachineType(type) {
+            if (type === 'lisse') {
+                showPage('inputPageLisse');
+            } else if (type === 'saillant') {
+                showPage('inputPageSaillant');
+            }
+        }
+    </script>
+</body>
+</html>
