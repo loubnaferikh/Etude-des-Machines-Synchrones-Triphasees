@@ -347,9 +347,6 @@ This software is provided "as is" without warranty of any kind. The authors and 
 
 <div align="center">
 
-**Projet réalisé dans le cadre du Mini Projet ME3 - Sujet 04**  
-**École Nationale Polytechnique (ENP)**  
-**Année académique 2024-2025**
 
 
 
