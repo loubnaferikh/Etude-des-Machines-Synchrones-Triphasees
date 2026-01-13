@@ -267,8 +267,8 @@ The application models the following electrical system components:
 ┌─────────────────────────────────────────────────────────────┐
 │                    Rendering Layer                          │
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐       │
-│  │  Canvas API  │  │  Vector      │  │  Animation    │      │
-│  │  Rendering   │  │  Drawing     │  │  Controller   │      │
+│  │  Canvas API  │  │  Vector      │  │  Animation   │       │
+│  │  Rendering   │  │  Drawing     │  │  Controller  │       │
 │  └──────────────┘  └──────────────┘  └──────────────┘       │
 └─────────────────────────────────────────────────────────────┘
 ```
